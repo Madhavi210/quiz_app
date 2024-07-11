@@ -8,6 +8,7 @@ import IUser from '../interface/user.interface';
 import AppError from '../utils/errorHandler';
 import StatusConstants from '../constant/statusConstant';
 import { SECRET_KEY } from '../config/config';
+import { userRole } from '../enum/userRole';
 
 export default class UserService {
     public static async createUser(
@@ -75,7 +76,7 @@ export default class UserService {
     public static async loginUser(
         email: string,
         password: string
-    ): Promise<{ userId: string, role:string, token: string }> {
+    ): Promise<{ id: string, role:string, token: string }> {
         const user = await User.findOne({ email }).exec();
         if (!user || !(await bcrypt.compare(password, user.password))) {
             throw new AppError(
@@ -90,8 +91,8 @@ export default class UserService {
             );
         }
         const token = jwt.sign({ userId: user._id , role:user.role}, SECRET_KEY, { expiresIn: '1h' });
-        user.token = token;
+        user.token = token;        
         await user.save();
-        return { userId: String(user._id), role: String(user.role), token };
+        return { id: String(user._id), role: String(user.role), token };
     }
 }

@@ -22,8 +22,8 @@ class QuestionController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const questions = await QuestionServices.getAllQuestions();
-      res.status(200).json(questions);
+      const {totalQuestion, questions} = await QuestionServices.getAllQuestions();
+      res.status(200).json({totalQuestion, questions});
     } catch (error) {
       next(error);
     }

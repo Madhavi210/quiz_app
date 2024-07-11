@@ -4,7 +4,7 @@ export default interface IUser extends Document {
     name: string;
     email: string;
     password: string;
-    role: 'customer' | 'admin';
+    role: 'user' | 'admin';
     token: string;
     profilePic: string;
 }

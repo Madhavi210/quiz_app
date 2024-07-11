@@ -1,7 +1,6 @@
 
 import express from 'express';
 import examController from '../controller/exam.controller';
-import upload from '../utils/fileUpload';
 import Authentication from '../middleware/authentication';
 
 export default class ExamRouter {

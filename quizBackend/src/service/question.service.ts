@@ -1,3 +1,4 @@
+import { IfAny } from "mongoose";
 import { IQuestion } from "../interface/question.interface";
 import QuestionModel from "../model/question.model";
 
@@ -7,8 +8,10 @@ class QuestionServices {
     return await newQuestion.save();
   };
 
-  getAllQuestions = async (): Promise<IQuestion[]> => {
-    return await QuestionModel.find();
+  getAllQuestions = async (): Promise<{ questions: IQuestion[], totalQuestion: number }> => {
+    const totalQuestion = await QuestionModel.countDocuments();
+    const questions = await QuestionModel.find();
+    return { totalQuestion, questions };
   };
 
   getQuestionById = async (id: string): Promise<IQuestion | null> => {

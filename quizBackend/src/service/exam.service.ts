@@ -71,7 +71,6 @@ submitAnswers = async (
 ): Promise<any> => {
   const exam = await Exam.findById(examId).populate('questions.question');
   ;
-  console.log(exam);
 
   if (!exam) {
     throw new Error("Exam not found");
@@ -114,10 +113,10 @@ submitAnswers = async (
 
   generateNextExam = async (userId: string): Promise<any> => {
     const results = await Result.find({ user: userId });
-    console.log(results);
+    console.log(results, "resulttt");
 
     if (results.length === 0) {
-      throw new Error(`You have to apper for first exam`);
+      throw new Error(`You have to appear for first exam`);
     }
 
     const totalAvgScore = results.reduce(
@@ -125,8 +124,7 @@ submitAnswers = async (
       0
     );
     const avgScore = results.length > 0 ? totalAvgScore / results.length : 0;
-    // console.log(avgScore);
-
+    
     let difficultyQuery;
     if (avgScore >= 70) {
       difficultyQuery = { $gte: 8 };
@@ -134,12 +132,16 @@ submitAnswers = async (
       difficultyQuery = { $gte: 5, $lte: 7 };
     } else {
       difficultyQuery = { $lte: 3 };
-    }
+    }    
 
     const nextExamQuestions = await Question.aggregate([
       { $match: { difficulty: difficultyQuery } },
       { $sample: { size: 10 } },
     ]);
+
+    if (nextExamQuestions.length === 0) {
+      throw new Error("No questions found for the next exam");
+    }    
 
     const nextExam = new Exam({
       user: userId,
@@ -148,7 +150,7 @@ submitAnswers = async (
         difficulty: question.difficulty,
       })),
     });
-
+    
     await nextExam.save();
 
     return {nextExamQuestions, nextExam};

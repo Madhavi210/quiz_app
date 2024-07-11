@@ -15,11 +15,11 @@ export default class QuestionRouter {
 
   private routes() {
 
-    this.router.post('/add', Authentication.authUser, Authentication.authAdmin , questionController.createQuestion);
-    this.router.get('/Allquestions',Authentication.authUser, Authentication.authAdmin, questionController.getAllQuestions);
-    this.router.get('/questions/:id', Authentication.authUser, Authentication.authAdmin, questionController.getQuestionById);
-    this.router.put('/update/:id', Authentication.authUser, Authentication.authAdmin, questionController.updateQuestion);
-    this.router.delete('/questions/:id', Authentication.authUser, Authentication.authAdmin,  questionController.deleteQuestion);
+    this.router.post('/', Authentication.authUser, Authentication.authAdmin , questionController.createQuestion);
+    this.router.get('/',Authentication.authUser, Authentication.authAdmin, questionController.getAllQuestions);
+    this.router.get('/:id', Authentication.authUser, Authentication.authAdmin, questionController.getQuestionById);
+    this.router.put('/:id', Authentication.authUser, Authentication.authAdmin, questionController.updateQuestion);
+    this.router.delete('/:id', Authentication.authUser, Authentication.authAdmin,  questionController.deleteQuestion);
     
 }
 
@@ -27,3 +27,4 @@ export default class QuestionRouter {
     return this.router;
   }
 }
+

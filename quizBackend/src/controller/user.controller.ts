@@ -95,8 +95,8 @@ export default class UserController {
     public static async loginUser(req: Request, res: Response, next: NextFunction): Promise<void> {
         const { email, password } = req.body;
         try {
-            const { userId,role, token } = await UserService.loginUser(email, password);
-            res.status(StatusCode.OK).json({ userId, role, token });
+            const { id, role, token } = await UserService.loginUser(email, password);
+            res.status(StatusCode.OK).json({ id, role, token });
         } catch (error) {
             next(error);
         }

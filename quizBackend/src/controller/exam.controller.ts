@@ -12,7 +12,7 @@ class ExamController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const userId = req.id;
+      const userId = req.body;
       const questions = await ExamServices.generateFirstTimeExam(
         userId as string
       );
@@ -29,7 +29,7 @@ class ExamController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const userId = req.id;
+      const userId = req.body;
       const { examId, answers } = req.body;
       const result = await ExamServices.submitAnswers(
         userId as string,
@@ -52,11 +52,7 @@ class ExamController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const userId = req.id;
-      // const { avgScore } =
-      // const result = await Result.findOne({ user: userId });
-      // const avgScore = result?.avgScore;
-
+      const {userId} = req.body  ;
       const { nextExamQuestions, nextExam } = await ExamServices.generateNextExam(
         userId as string
       );
@@ -64,7 +60,7 @@ class ExamController {
       res.status(200).json({
         nextExamQuestions,
         examId: nextExam._id,
-        userId: nextExam.user
+        userId: nextExam.user.toString()
       });
     } catch (error) {
       next(error);
@@ -81,7 +77,6 @@ class ExamController {
       }
 
       const results = await ExamServices.getExamHistory(userId);
-
 
       res.status(200).json(results);
 

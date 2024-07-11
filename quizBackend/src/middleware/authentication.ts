@@ -21,8 +21,9 @@ export default class Authentication {
       if (!SECRET_KEY) {
         throw new Error("SECRET_KEY is not defined");
       }
-      const decode = (await jwt.verify(token, SECRET_KEY)) as TokenPayload ;      
-      req.id = decode.id;
+      const decode = (await jwt.verify(token, SECRET_KEY)) as any ;      
+      req.id = decode.userId;
+      
       next();
     } catch (error: any) {
       console.error(error);
@@ -35,7 +36,7 @@ export default class Authentication {
     next: NextFunction
   ): Promise<void> {
     try {
-      const userId = req.id;
+      const userId = req.id;      
       const user = await User.findById(userId);
       if (!user) {
         throw new Error("admin not found");

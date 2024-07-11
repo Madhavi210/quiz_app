@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Toggle Button for Offcanvas -->
+      <a class="btn btn-light offcanvas-toggle" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+        <i class="fa-solid fa-toggle-on toggle-icon"></i>
+      </a>
+  
+      <!-- Profile Picture and Username -->
+      <div class="d-flex align-items-center">
+        <img [src]="profilePicUrl" alt="Profile" class="rounded-circle me-2" width="40" height="40" />
+        <span class="text-white">{{ userName }}</span>
+      </div>
+  
+      <!-- Logout Button -->
+      <div class="d-flex">
+        <a href="" class="m-1">home</a>
+        <a href="" class="m-1">home</a>
+        <button class="btn btn-danger ms-2" (click)="logout()">Logout</button>
+      </div>
+  
+      <!-- Navbar Toggler Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body bg-dark">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active">
+            <i class="fa-solid fa-bookmark"></i>
+            Categories
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >
+            <i class="fa-solid fa-box"></i>
+            Products
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">
+            <i class="bx bx-log-out nav_icon"></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

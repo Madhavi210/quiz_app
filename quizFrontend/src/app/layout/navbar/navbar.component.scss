@@ -1,0 +1,20 @@
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color:  rgba(21, 109, 241, 0.897);
+    margin-top: 56px; /* Height of the navbar */
+  }
+
+  .navbar {
+    z-index: 99;
+    background-color: rgba(21, 109, 241, 0.897);
+  }
+  .nav-link {
+    color: white;
+  }
+
+
