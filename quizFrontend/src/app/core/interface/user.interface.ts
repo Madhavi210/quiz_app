@@ -6,4 +6,6 @@ export interface IUser  {
     role: 'user' | 'admin';
     token: string;
     profilePic: string;
+    createdAt: Date; 
+    updatedAt: Date; 
 }

@@ -16,6 +16,8 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { ExamHistoryComponent } from './pages/exam-history/exam-history.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ExamHistoryComponent } from './pages/exam-history/exam-history.componen
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
-    ExamHistoryComponent
+    ExamHistoryComponent,
+    UserDetailComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

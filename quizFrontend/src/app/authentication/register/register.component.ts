@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent {
 
   registerForm!: FormGroup;
+  
   constructor(
     private fb: FormBuilder,
     private router: Router,

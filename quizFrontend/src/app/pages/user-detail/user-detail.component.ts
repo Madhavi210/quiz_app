@@ -1,0 +1,82 @@
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/core/services/user/users.service';
+import { IUser } from 'src/app/core/interface/user.interface';
+import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/core/services/login/login.service';
+
+@Component({
+  selector: 'app-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss']
+})
+export class UserDetailComponent implements OnInit {
+
+  users: any[] = [];
+  profilePicUrl: SafeResourceUrl | null = null;
+
+  ngOnInit(): void {
+    
+    this.fetchAllUser();
+  }
+
+  constructor(
+    private userService:UserService,
+    private loginService:LoginService,
+    private sanitizer: DomSanitizer,
+    private router: Router
+  ){}
+
+  fetchAllUser():void {
+    this.userService.getAllUsers().subscribe(
+      data => {        
+        this.users = data.users; 
+        this.users.forEach(user => {          
+          if(user.profilePic) {
+            console.log(user.profilePic);
+            
+            const filename = user.profilePic.split('\\').pop();
+          const fullUrl = `http://localhost:3000/uploads/${filename}`;
+          this.profilePicUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
+          }
+        });
+      },
+      error => {
+        console.error('Error fetching users:', error);
+      }
+    );
+  }
+
+  editUser(userId: string): void {
+    this.router.navigate(['/edit-user', userId]);
+  }
+
+  deleteUser(userId: string): void {
+    console.log(userId);
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(userId).subscribe(
+          () => {
+            this.fetchAllUser(); // Refresh the user list after deletion
+            Swal.fire('Deleted!', 'User has been deleted.', 'success');
+          },
+          error => {
+            console.error('Error deleting user:', error.message, error);
+            Swal.fire('Error!', 'Failed to delete user.', 'error');
+          }
+        );
+      }
+    });
+  }
+
+}

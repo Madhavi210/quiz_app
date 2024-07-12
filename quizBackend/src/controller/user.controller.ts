@@ -52,8 +52,8 @@ export default class UserController {
 
     public static async getAllUsers(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const users = await UserService.getAllUsers();
-            res.status(StatusCode.OK).json(users);
+            const {users, totalUser} = await UserService.getAllUsers();
+            res.status(StatusCode.OK).json({users, totalUser});
         } catch (error) {
             next(error);
         }

@@ -44,8 +44,10 @@ export default class UserService {
         return User.findById(id).exec();
     }
 
-    public static async getAllUsers(): Promise<IUser[]> {
-        return User.find().exec();
+    public static async getAllUsers(): Promise<{ users: IUser[], totalUser: number }> {
+        const users = await User.find().exec();
+        const totalUser = await User.countDocuments().exec();
+        return { users, totalUser };
     }
 
     public static async updateUser(

@@ -20,8 +20,8 @@ export class UserService {
     return this.http.get<IUser>(`${this.apiUrl}/${userId}`);
   }
 
-  getAllUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.apiUrl);
+  getAllUsers(): Observable<{ users: IUser[], totalUser: number }> {
+    return this.http.get<{ users: IUser[], totalUser: number }>(this.apiUrl);
   }
 
   updateUser(userId: string, updates: any): Observable<IUser> {
