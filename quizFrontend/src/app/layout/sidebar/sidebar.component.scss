@@ -1,43 +1,45 @@
 
-
 .navbar {
-    .offcanvas-toggle {
-      background-color: transparent; // Remove background color from toggle button
-      border: none;
-      padding: 0;
-    }
-  
-    .toggle-icon {
-      font-size: 1.5rem;
-      color: white; // Set color of toggle icon
-    }
-  
-    .container-fluid {
-      display: flex;
-      align-items: center;
-    }
-  
-    .btn-danger {
-      margin-left: auto; // Align Logout button to the right
-    }
-  
-    .offcanvas {
-      .offcanvas-body {
-        background-color: #f0f0f0; // Grey background for offcanvas body
-      }
-  
-      .nav-link {
-        color: #333; // White color for offcanvas links
-      }
-  
-      .active {
-        color: #000; // Dark color for active link
-        font-weight: bold;
-      }
-  
-      .nav-link:hover {
-        text-decoration: none;
-      }
-    }
+  .navbar-brand {
+    font-weight: bold;
   }
   
+  .nav-link {
+    color: #fff; 
+  }
+
+  .navbar-toggler {
+    background-color: white;
+    border: none; 
+  }
+}
+
+.offcanvas {
+  width: 250px; 
+  transition: width 0.3s ease; 
+
+  .offcanvas-header {
+    background-color: #343a40; 
+  }
+
+  .offcanvas-body {
+    background-color: #212529; 
+    color: #fff; 
+  }
+
+  .nav-link {
+    color: #fff; 
+  }
+
+  .nav-link.active {
+    font-weight: bold; 
+  }
+
+  .nav-link:hover {
+    text-decoration: none; 
+  }
+
+  .btn-danger {
+    width: 100%; 
+  }
+}

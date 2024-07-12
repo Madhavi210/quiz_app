@@ -1,56 +1,60 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <!-- Toggle Button for Offcanvas -->
-      <a class="btn btn-light offcanvas-toggle" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-        <i class="fa-solid fa-toggle-on toggle-icon"></i>
-      </a>
-  
-      <!-- Profile Picture and Username -->
-      <div class="d-flex align-items-center">
-        <img [src]="profilePicUrl" alt="Profile" class="rounded-circle me-2" width="40" height="40" />
-        <span class="text-white">{{ userName }}</span>
-      </div>
-  
-      <!-- Logout Button -->
-      <div class="d-flex">
-        <a href="" class="m-1">home</a>
-        <a href="" class="m-1">home</a>
-        <button class="btn btn-danger ms-2" (click)="logout()">Logout</button>
-      </div>
-  
-      <!-- Navbar Toggler Button -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </nav>
-  
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body bg-dark">
-      <ul class="nav flex-column">
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a *ngIf="userRole === 'admin'" class="nav-link text-light p-2 " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+      <i class="fa-solid fa-bars"></i> <!-- FontAwesome toggle icon for side bar-->
+    </a>
+    <a class="navbar-brand text-light">Quiz App</a>
+    <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active">
-            <i class="fa-solid fa-bookmark"></i>
-            Categories
-          </a>
+          <a class="nav-link active text-light" aria-current="page" >Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >
-            <i class="fa-solid fa-box"></i>
-            Products
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="logout()">
-            <i class="bx bx-log-out nav_icon"></i>
-            Logout
-          </a>
+          <a class="nav-link text-light" >About Us</a>
         </li>
       </ul>
+      <div class="d-flex align-items-center">
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle text-light p-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img [src]="profilePicUrl" alt="Profile" class="rounded-circle" width="40" height="40"> <!-- Add your profile pic URL -->
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><span class="dropdown-item">Name: {{userName}}</span></li>
+            <li><span class="dropdown-item">Role: {{userRole}}</span></li>
+            <li><a class="dropdown-item">Another action</a></li>
+            <li><hr></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-  
+</nav>
+
+<div *ngIf="userRole === 'admin'" class="offcanvas offcanvas-start bg-dark text-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" >
+          <i class="fa-solid fa-bookmark"></i> Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fa-solid fa-box"></i> Products
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="d-flex justify-content-end mt-auto">
+      <a class="btn btn-danger" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</div>

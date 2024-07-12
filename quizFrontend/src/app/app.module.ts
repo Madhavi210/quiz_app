@@ -15,6 +15,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { ExamHistoryComponent } from './pages/exam-history/exam-history.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
     DashboardComponent,
     HomeComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ExamHistoryComponent
   ],
   imports: [
     BrowserModule,

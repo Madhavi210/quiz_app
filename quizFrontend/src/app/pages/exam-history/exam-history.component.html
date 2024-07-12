@@ -1,0 +1,34 @@
+
+<div class="container mt-4">
+    <div *ngIf="examHistory.length > 0" class="table-container ">
+        <h2>Quiz History</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Result ID</th>
+              <th>User ID</th>
+              <th>Exam ID</th>
+              <th>Score</th>
+              <th>Average Score</th>
+              <th>Date</th>
+              <th>Show Your Answers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let result of examHistory">
+              <td class="text-center">{{ result._id }}</td>
+              <td class="text-center">{{ result.user.name }}</td>
+              <td class="text-center">{{ result.exam._id }}</td>
+              <td class="text-center">{{ result.score }}</td>
+              <td class="text-center">{{ result.avgScore }}</td>
+              <td class="text-center">{{ result.createdAt | date:'medium' }}</td>
+              <td class="text-center"><button class="btn btn-secondary" (click)="showAnswers(result)">Answers</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="examHistory.length === 0">
+        <p>No results found.</p>
+      </div>    
+</div>
+

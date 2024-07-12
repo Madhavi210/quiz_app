@@ -2,3 +2,81 @@
 <!-- <app-navbar></app-navbar> -->
 
 <app-sidebar></app-sidebar>
+
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4 mb-2">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <h5 class="card-title">Start Quiz</h5>
+            <p class="card-text">Begin your quiz now and test your knowledge!</p>
+            <button class="btn btn-primary" (click)="loadFirstExamPaper()">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 mb-2">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <h5 class="card-title">Results</h5>
+            <p class="card-text">Check your quiz results and see how well you did!</p>
+            <button class="btn btn-success" (click)="viewResults()">View Results</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 mb-2">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <h5 class="card-title">History</h5>
+            <p class="card-text">Review your past quizzes and performances!</p>
+            <button class="btn btn-info" (click)="viewHistory()">Quiz History</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+
+<div *ngIf="examPaper && examPaper.questions && examPaper.questions.length > 0">
+    <form >
+        <div *ngFor="let question of examPaper.questions">
+            <div class="question">
+                <h3>{{ question.text }}</h3>
+                <div class="options">
+                    <div *ngFor="let option of question.options">
+                        <input type="radio" [id]="option" [name]="question.question" [value]="option"
+                            (change)="userAnswers[question.question] = option" />
+                        <label [for]="option">{{ option }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" (click)="submitExam()">Submit</button>
+    </form>
+</div>
+
+<!-- <div *ngIf="!examPaper.questions || examPaper.questions.length === 0">
+</div> -->
+
+<!-- <div *ngIf="loading"></div> -->
+<div *ngIf=" examPaper.length > 0">
+    <form >
+        <div *ngFor="let question of examPaper">
+            <div class="question">
+                <h3>{{ question.text }}</h3>
+                <div class="options">
+                    <div *ngFor="let option of question.options">
+                        <input type="radio" [id]="option" [name]="question._id" [value]="option"
+                            (change)="userAnswers[question._id] = option" />
+                        <label [for]="option">{{ option }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button (click)="submitExam()" type="submit">Submit Exam</button>
+    </form>
+</div>
+<div *ngIf="!loading && examPaper.length === 0">
+    <p>No exam paper found.</p>
+</div>

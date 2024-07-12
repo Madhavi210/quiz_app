@@ -2,6 +2,7 @@ import { Types } from "mongoose";
 import Exam from "../model/exam.model";
 import Question from "../model/question.model";
 import { Result } from "../model/result.model";
+import mongoose from "mongoose";
 
 class ExamServices {
 
@@ -16,7 +17,7 @@ class ExamServices {
     }
 
     const exam = new Exam({
-      user: userId,
+      user: new mongoose.Types.ObjectId(userId),
       questions: easyQuestions.map((question) => ({
         question: question._id,
         difficulty: question.difficulty,
@@ -70,15 +71,14 @@ submitAnswers = async (
   answers: { questionId: string; answer: string }[]
 ): Promise<any> => {
   const exam = await Exam.findById(examId).populate('questions.question');
-  ;
-
+  
   if (!exam) {
     throw new Error("Exam not found");
   }
-
-  if (exam.user.toString() != userId) {
-    throw new Error("Unauthorized Access");
-  }
+  
+  // if (exam.user.toString() != userId) {
+  //   throw new Error("Unauthorized Access");
+  // }
 
   let score = 0;
   for (const ans of answers) {
@@ -103,8 +103,8 @@ submitAnswers = async (
       question: ans.questionId,
       userAnswer: ans.answer,
     })),
-    score: score,
-    avgScore: avgScore,
+    score,
+    avgScore,
   });
 
   return await result.save();
@@ -113,7 +113,6 @@ submitAnswers = async (
 
   generateNextExam = async (userId: string): Promise<any> => {
     const results = await Result.find({ user: userId });
-    console.log(results, "resulttt");
 
     if (results.length === 0) {
       throw new Error(`You have to appear for first exam`);
@@ -162,7 +161,7 @@ submitAnswers = async (
       
       const results = await Result.find({ user: userId })
         .populate('exam', 'examName') 
-        .populate('user', 'username') 
+        .populate('user', 'name') 
         .exec();
 
       console.log(results,"result");

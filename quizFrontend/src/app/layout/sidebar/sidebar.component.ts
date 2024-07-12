@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user/users.service'; // Adjust path as per your project structure
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/core/services/login/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,6 +19,7 @@ export class SidebarComponent implements OnInit{
 
   constructor(
     private userService: UserService,
+    private loginService: LoginService,
     private sanitizer: DomSanitizer,
     private router: Router
   ) {}
@@ -29,30 +31,18 @@ export class SidebarComponent implements OnInit{
     }
     
     this.userRole = localStorage.getItem('role');
-    console.log(this.userId, this.userRole);
   }
-
 
   fetchUserData(): void {
     if (this.userId) {
     this.userService.getUserById(this.userId!).subscribe(
       user => {
-        this.userName = user.name;
-        console.log(this.userName);
-        
-        if (user.profilePic) {
-          console.log(user.profilePic);
-          
+        this.userName = user.name;        
+        if (user.profilePic) {          
           const filename = user.profilePic.split('\\').pop();
-          console.log(filename);
-          
           const fullUrl = `http://localhost:3000/uploads/${filename}`;
-          console.log(fullUrl);
-          
           this.profilePicUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
-        }
-        console.log(this.profilePicUrl);
-        
+        }        
       },
       error => {
         console.error('Error fetching user data:', error);
@@ -63,9 +53,19 @@ export class SidebarComponent implements OnInit{
   }
 }
 
-  logout(): void {
-    // Perform logout functionality (e.g., clear local storage, navigate to login page)
-    // localStorage.removeItem('userId');
-    // this.router.navigate(['/login']); // Example navigation to login page
-  }
+logout(): void {
+  this.loginService.logout().subscribe(
+    response => {
+      Swal.fire("Success", "Logout Successfully", "success").then(() => {
+        this.router.navigate(['/login']);
+      });
+    },
+    error => {
+      console.error(error);
+      Swal.fire("Error", "Logout Failed", "error"); 
+    }
+  );
+}
+
+
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class LoginService {
   private userRole?: string | null = null; 
   private isAuthenticated: boolean = false;
   
-  private readonly apiUrl = '/user';
+  private readonly apiUrl = 'http://localhost:3000/api/user';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -50,12 +50,15 @@ export class LoginService {
     return this.isAuthenticated;
   }
 
-  logout(): void {
+  logout(): Observable<void> {
     this.token = null;
     this.userId = null;
     this.isAuthenticated = false;
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('userId');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
     this.router.navigate(['/login']);
+    return of(undefined); // Return an observable
   }
 }
+

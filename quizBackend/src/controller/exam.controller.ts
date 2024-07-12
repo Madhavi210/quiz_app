@@ -12,7 +12,7 @@ class ExamController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const userId = req.body;
+      const {userId} = req.body;
       const questions = await ExamServices.generateFirstTimeExam(
         userId as string
       );
@@ -29,18 +29,20 @@ class ExamController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const userId = req.body;
-      const { examId, answers } = req.body;
+      const { examId, answers, userId } = req.body;
       const result = await ExamServices.submitAnswers(
-        userId as string,
+        userId ,
         examId,
         answers
       );
+      
       res.status(200).json({
         message: "Answers submitted successfully",
         score: result.score,
       });
     } catch (error) {
+      console.log(error);
+      
       next(error);
     }
   };

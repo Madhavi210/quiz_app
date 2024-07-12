@@ -16,13 +16,13 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private router:Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const baseUrl = 'http://localhost:3000/api';
+    // const baseUrl = 'http://localhost:3000/api';
     const accesToken = localStorage.getItem('token');
 
     let cloneReq = request;
     if(accesToken){
       cloneReq =  request.clone({
-        url : `${baseUrl}${request.url}`,
+        // url : `${baseUrl}${request.url}`,
         setHeaders: {
           Authorization: `Bearer ${accesToken}`
         }

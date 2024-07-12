@@ -15,7 +15,7 @@ export default class ExamRouter {
 
     this.router.post('/', Authentication.authUser, examController.generateFirstTimeExam)
     this.router.post('/nextExam', Authentication.authUser, examController.generateNextExam)
-    this.router.post('/submit-answers', Authentication.authUser, examController.submitAnswers);
+    this.router.post('/submit-answers', examController.submitAnswers);
     this.router.get('/exam-history/:id', Authentication.authUser, examController.getExamHistory);
     
 }

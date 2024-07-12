@@ -90,7 +90,7 @@ export default class UserService {
                 StatusConstants.INTERNAL_SERVER_ERROR.httpStatusCode
             );
         }
-        const token = jwt.sign({ userId: user._id , role:user.role}, SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id , role:user.role}, SECRET_KEY, { expiresIn: '10h' });
         user.token = token;        
         await user.save();
         return { id: String(user._id), role: String(user.role), token };

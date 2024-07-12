@@ -9,12 +9,14 @@
   }
   
   .sec1 {
-    background-image: url('../../../assets/images/login_back.avif');
+    background-image: url('../../../assets/images/loginbg2.avif') ;
     background-size: cover;
     height: 100%; /* Ensures full height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    background-color: lightblue;
   }
   
   .text-white {

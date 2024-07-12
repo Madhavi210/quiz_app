@@ -8,7 +8,7 @@ import { IUser } from 'src/app/core/interface/user.interface';
 })
 export class UserService {
 
-  private apiUrl = `/user`;
+  private apiUrl = `http://localhost:3000/api/user`;
 
   constructor(private http: HttpClient) {}
 
