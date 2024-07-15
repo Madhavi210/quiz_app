@@ -24,7 +24,13 @@
           <ul class="dropdown-menu dropdown-menu-end">
             <li><span class="dropdown-item">Name: {{userName}}</span></li>
             <li><span class="dropdown-item">Role: {{userRole}}</span></li>
-            <li><a class="dropdown-item">Another action</a></li>
+            <li>
+              <a class="dropdown-item" (click)="editProfile()">
+                  <button type="button" class="btn btn-secondary" (click)="open(modalContent)">
+                    Edit Profile
+                  </button>
+              </a>
+            </li>
             <li><hr></li>
             <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
           </ul>
@@ -58,3 +64,38 @@
     </div>
   </div>
 </div>
+
+
+
+<!-- Modal -->
+<ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Profile</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required>
+      </div>
+      <div class="form-group">
+        <label for="profilePic">Profile Picture</label>
+        <input type="file" class="form-control" id="profilePic" (change)="onFileChange($event)">
+        <img *ngIf="profilePicUrl" [src]="profilePicUrl" alt="Profile Picture" class="img-thumbnail mt-2" width="150">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</ng-template>
+

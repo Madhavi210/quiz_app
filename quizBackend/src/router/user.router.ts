@@ -22,7 +22,7 @@ export default class UserRouter {
     this.router.delete('/:id', UserController.deleteUser);
 
     // PUT /api/users/:id - Update user by ID
-    this.router.put('/:id', UserController.updateUser);
+    this.router.put('/:id',upload.single('profilePic'), UserController.updateUser);
 
     // GET /api/users - Get all users (requires admin authentication)
     this.router.get('/', UserController.getAllUsers);

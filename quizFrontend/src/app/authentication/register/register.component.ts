@@ -49,7 +49,11 @@ export class RegisterComponent {
           this.router.navigate(['/login']);
         },
         (error) => {
-          Swal.fire('Error', 'Registration failed', 'error');
+          if (error.status === 409) {
+            Swal.fire('Error', 'Username or email already exists. Please choose another one.', 'error');
+          } else {
+            Swal.fire('Error', 'Registration failed. Please try again.', 'error');
+          }
         }
       );
     } else {

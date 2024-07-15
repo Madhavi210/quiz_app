@@ -18,6 +18,8 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { ExamHistoryComponent } from './pages/exam-history/exam-history.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { AdminAddUserComponent } from './pages/admin-add-user/admin-add-user.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,14 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     SidebarComponent,
     ExamHistoryComponent,
     UserDetailComponent,
-    EditUserComponent
+    EditUserComponent,
+    AdminAddUserComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
+    NgbModalModule,
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -2,9 +2,12 @@
 
     <div class="container-fluid">
         <h2>User List</h2>
+        <h2><button type="button" class="btn btn-secondary" routerLink="/admin/addUser">Add User</button></h2>
         <table>
           <thead>
             <tr>
+              <th>SR. No.</th>
+              <th>ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -15,16 +18,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ user._id }}</td>
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.role }}</td>
-              <td *ngIf="profilePicUrl"><img src={{profilePicUrl}} alt="{{ user.name }}" width="50" height="50"></td>
+              <td *ngIf="profilePicUrl">
+                <!-- <img src={{profilePicUrl}} alt="{{ user.name }}" width="50" height="50"> -->
+                <img *ngIf="profilePicUrl[i]" [src]="profilePicUrl[i]" width="50" height="50" alt="{{ user.name }}'s profile picture">
+              </td>
               <td>{{ user.createdAt | date:'medium' }}</td>
               <td>{{ user.updatedAt | date:'medium' }}</td>
               <td>
-                <button (click)="editUser(user._id)" class="btn btn-primary">Edit</button>
-                <button (click)="deleteUser(user._id)" class="btn btn-danger">Delete</button>
+                <button (click)="editUser(user._id)" class="btn btn-primary m-1">Edit</button>
+                <button (click)="deleteUser(user._id)" class="btn btn-danger m-1">Delete</button>
               </td>
             </tr>
           </tbody>

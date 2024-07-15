@@ -62,6 +62,9 @@ export default class UserService {
                 StatusConstants.NOT_FOUND.httpStatusCode
             );
         }
+        if (!updates.token) {
+            updates.token = user.token;
+        }
         return user.toObject();
     }
 

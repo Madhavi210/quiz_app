@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ExamHistoryComponent } from './pages/exam-history/exam-history.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { AdminAddUserComponent } from './pages/admin-add-user/admin-add-user.component';
 
 const routes: Routes = [
   {path:'', redirectTo:"login", pathMatch:'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:"edit-user/:id", component: EditUserComponent},
   {path:"home", component: HomeComponent},
   {path:"admin", component: DashboardComponent},
+  {path:"admin/addUser", component: AdminAddUserComponent},
   {path:"examHistory", component: ExamHistoryComponent},
 ];
 

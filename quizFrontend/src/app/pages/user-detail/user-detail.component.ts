@@ -14,12 +14,7 @@ import { LoginService } from 'src/app/core/services/login/login.service';
 export class UserDetailComponent implements OnInit {
 
   users: any[] = [];
-  profilePicUrl: SafeResourceUrl | null = null;
-
-  ngOnInit(): void {
-    
-    this.fetchAllUser();
-  }
+  profilePicUrl: SafeResourceUrl[] = [];
 
   constructor(
     private userService:UserService,
@@ -28,17 +23,23 @@ export class UserDetailComponent implements OnInit {
     private router: Router
   ){}
 
+  ngOnInit(): void {
+    this.fetchAllUser();
+  }
+
   fetchAllUser():void {
     this.userService.getAllUsers().subscribe(
       data => {        
         this.users = data.users; 
+        this.profilePicUrl = [];
         this.users.forEach(user => {          
-          if(user.profilePic) {
-            console.log(user.profilePic);
-            
+          if(user.profilePic) {            
             const filename = user.profilePic.split('\\').pop();
-          const fullUrl = `http://localhost:3000/uploads/${filename}`;
-          this.profilePicUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
+            const fullUrl = `http://localhost:3000/uploads/${filename}`;
+            const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
+            this.profilePicUrl.push(safeUrl);
+          } else {
+            this.profilePicUrl.push('');
           }
         });
       },
@@ -53,8 +54,6 @@ export class UserDetailComponent implements OnInit {
   }
 
   deleteUser(userId: string): void {
-    console.log(userId);
-    
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",

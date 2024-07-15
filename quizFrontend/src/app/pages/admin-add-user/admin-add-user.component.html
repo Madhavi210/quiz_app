@@ -1,0 +1,77 @@
+<div class="container-fluid p-0 m-0">
+    <div class="row sec1">
+      <div class="sec2 d-flex align-items-center justify-content-center">
+        <div class="login-form rounded-lg shadow-lg p-5">
+          <h4 class="mb-4 text-center"><i class="fas fa-user-plus p-2 fs-1"></i><br><span class=""> Add New User</span></h4>
+  
+          <!-- User Registration Form -->
+          <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+            <!-- Name -->
+            <div class="form-group">
+              <label class="mb-2" for="name">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
+              <div *ngIf="addUserForm.get('name')?.errors && (addUserForm.get('name')?.dirty || addUserForm.get('name')?.touched)" class="text-danger">
+                <div *ngIf="addUserForm.get('name')?.hasError('required')">Name is required.</div>
+              </div>
+            </div>
+  
+            <!-- Email -->
+            <div class="form-group">
+              <label class="mb-2" for="email">Email address</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text p-3"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email">
+              </div>
+              <div *ngIf="addUserForm.get('email')?.errors && (addUserForm.get('email')?.dirty || addUserForm.get('email')?.touched)" class="text-danger">
+                <div *ngIf="addUserForm.get('email')?.hasError('required')">Email is required.</div>
+                <div *ngIf="addUserForm.get('email')?.hasError('email')">Invalid email format.</div>
+              </div>
+            </div>
+  
+            <!-- Password -->
+            <div class="form-group">
+              <label class="mb-2" for="password">Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text p-3"><i class="fas fa-lock"></i></span>
+                </div>
+                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+              </div>
+              <div *ngIf="addUserForm.get('password')?.errors && (addUserForm.get('password')?.dirty || addUserForm.get('password')?.touched)" class="text-danger">
+                <div *ngIf="addUserForm.get('password')?.hasError('required')">Password is required.</div>
+              </div>
+            </div>
+  
+            <!-- Profile Picture -->
+            <div class="form-group">
+              <label class="mb-2" for="profilePic">Profile Picture</label>
+              <input type="file" class="form-control" id="profilePic" formControlName="profilePic" (change)="onFileChange($event)" accept="image/*">
+              <div *ngIf="addUserForm.get('profilePic')?.errors && (addUserForm.get('profilePic')?.touched || addUserForm.get('profilePic')?.dirty)" class="text-danger mt-1">
+                <div *ngIf="addUserForm.get('profilePic')?.hasError('required')">Profile picture is required.</div>
+              </div>
+            </div>
+  
+            <!-- Submit Button -->
+            <div class="form-group loginbtnsec">
+              <button type="submit" class="btn btn-primary m-1 btn-lg" [disabled]="!addUserForm.valid">Save</button>
+              <button type="submit" class="btn btn-secondary m-1 btn-lg" routerLink="/admin">Dashboard</button>
+            </div>
+          </form>
+  
+          <!-- Additional Features (Social Sign-in) -->
+          <!-- <div class="mt-3">
+            <button class="btn btn-outline-primary btn-block m-1"><i class="fab fa-google"></i> Sign in with Google</button>
+            <button class="btn btn-outline-primary btn-block m-1"><i class="fab fa-facebook"></i> Sign in with Facebook</button>
+          </div> -->
+  
+          <!-- Login Link -->
+          <div class="mt-3 text-center">
+            <!-- <p>If Already Registered, <a routerLink="/login">Login Here</a>.</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

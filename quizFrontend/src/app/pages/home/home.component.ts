@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit{
   ){ }
 
   ngOnInit(): void {
-    this.userId = localStorage.getItem('userId'); 
+    // this.userId = localStorage.getItem('userId'); 
   }
 
   viewResults() {
