@@ -45,7 +45,9 @@ export class LoginService {
   }
 
   isLoggedIn(): boolean {
-    return this.isAuthenticated;
+    // return this.isAuthenticated;
+    const token = localStorage.getItem('token');
+    return !!token;
   }
 
   logout(): Observable<void> {

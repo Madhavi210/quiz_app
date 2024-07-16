@@ -9,23 +9,52 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { AdminAddUserComponent } from './pages/admin-add-user/admin-add-user.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { roleGuard } from './core/guards/role.guard';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  {path:'', redirectTo:"login", pathMatch:'full'},
-  {path:"login", component: LoginComponent},
-  {path:"register", component: RegisterComponent},
-  { path: 'admin/addUser', component: EditUserComponent },
-  { path: 'admin/edit-user/:id', component: EditUserComponent },
-  {path : "admin/userList", component:UserDetailComponent},
-  {path:"home", component: HomeComponent},
-  {path:"admin", component: DashboardComponent},
-  {path:"examHistory", component: ExamHistoryComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', 
+    component: HomeComponent, 
+    canActivate: [authGuard] 
+  },
+  {
+    path: 'admin',
+    component: DashboardComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { expectedRole: 'admin' },
+  },
+  {
+    path: 'admin/addUser',
+    component: EditUserComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { expectedRole: 'admin' },
+  },
+  {
+    path: 'admin/edit-user/:id',
+    component: EditUserComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { expectedRole: 'admin' },
+  },
+  {
+    path: 'admin/userList',
+    component: UserDetailComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { expectedRole: 'admin' },
+  },
+  {
+    path: 'examHistory',
+    component: ExamHistoryComponent,
+    canActivate: [authGuard],
+  },
   { path: 'not-found', component: NotFoundComponent },
-  { path: '**', redirectTo: '/not-found' }
+  { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
