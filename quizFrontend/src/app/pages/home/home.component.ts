@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit{
       response => {
         this.examPaper = response[0];
         this.examId = response[0]._id;
-        localStorage.setItem('examId', this.examId);
+        // localStorage.setItem('examId', this.examId);
         this.userId = localStorage.getItem('userId');
       },
       error => {

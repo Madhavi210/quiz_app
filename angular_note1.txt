@@ -1,0 +1,30 @@
+
+@fortawesome/fontawesome-free:
+npm install @fortawesome/fontawesome-free@^6.5.2
+
+
+@ng-bootstrap/ng-bootstrap:
+npm install @ng-bootstrap/ng-bootstrap@^15.1.2
+
+
+@popperjs/core:
+npm install @popperjs/core@^2.11.6
+
+
+ (app.module.ts), import NgbModule from @ng-bootstrap/ng-bootstrap 
+
+npm i bootstrap 
+npm install jquery
+
+give proper path and port number
+
+dont repete img
+
+charttt  :--
+
+ npm install chart.js@3.7.0
+
+"scripts": [
+  "./node_modules/chart.js/dist/chart.min.js"
+]
+
