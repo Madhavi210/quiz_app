@@ -5,14 +5,12 @@
 }
   
   .container-fluid {
-    // padding-top: 50px; /* Adjust as needed */
     height: 100vh;
   }
 
   .sec1 {
     background-image: url('../../../assets/images/loginbg2.avif') ;
     background-size: cover;
-    // background-color: rgb(207, 217, 226);
     height: 100%;
   }
   
@@ -33,11 +31,11 @@
 /* Second Part - Login Form and Additional Features */
 .login-form {
     background-color: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Optional: Add box-shadow for a card effect */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
   }
   
   form {
-    max-width: 400px; /* Adjust form width as needed */
+    max-width: 400px; 
     margin: 0 auto;
   }
   
@@ -46,7 +44,7 @@
   }
   
   .input-group-text {
-    background-color: #f8f9fa; /* Bootstrap input group background color */
+    background-color: #f8f9fa; 
   }
   
   .btn-primary {
@@ -67,8 +65,8 @@
   }
   
   .text-danger {
-    color: #dc3545; /* Bootstrap's danger color */
-    font-size: 0.875rem; /* Adjust font size */
+    color: #dc3545; 
+    font-size: 0.875rem; 
   }
   
   /* Responsive Design */
@@ -88,3 +86,33 @@
     justify-content: center;
     align-items: center;
   }
+
+
+  /* Eye button styles */
+.input-group-append {
+  position: relative;
+}
+
+.btn-toggle-password {
+  background-color: #f8f9fa; 
+  border: grey;
+  margin: 5px ;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.btn-toggle-password:focus {
+  outline: none;
+}
+
+.btn-toggle-password i {
+  color: #6c757d; 
+  font-size: 1rem;
+}
+
+.btn-toggle-password:hover {
+  background-color: #e9ecef; 
+}
+

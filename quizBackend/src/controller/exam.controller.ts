@@ -40,9 +40,7 @@ class ExamController {
         message: "Answers submitted successfully",
         score: result.score,
       });
-    } catch (error) {
-      console.log(error);
-      
+    } catch (error) {      
       next(error);
     }
   };

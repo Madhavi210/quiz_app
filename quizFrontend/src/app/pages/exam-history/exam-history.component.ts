@@ -32,10 +32,7 @@ export class ExamHistoryComponent implements OnInit{
       );
   }
 
-  showAnswers(result: any): void {
-    // Prepare the questions and answers for display
-    console.log(result);
-    
+  showAnswers(result: any): void {    
     const questionsAndAnswers = result.answers.map((answer: any) => {
       return `
         <div>

@@ -29,7 +29,6 @@ export class NavbarComponent implements OnInit{
     }
     
     this.userRole = localStorage.getItem('role');
-    console.log(this.userId, this.userRole);
   }
 
 
@@ -38,21 +37,12 @@ export class NavbarComponent implements OnInit{
     this.userService.getUserById(this.userId!).subscribe(
       user => {
         this.userName = user.name;
-        console.log(this.userName);
         
         if (user.profilePic) {
-          console.log(user.profilePic);
-          
-          const filename = user.profilePic.split('\\').pop();
-          console.log(filename);
-          
-          const fullUrl = `http://localhost:3000/uploads/${filename}`;
-          console.log(fullUrl);
-          
+          const filename = user.profilePic.split('\\').pop();          
+          const fullUrl = `http://localhost:3000/uploads/${filename}`;          
           this.profilePicUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
-        }
-        console.log(this.profilePicUrl);
-        
+        }        
       },
       error => {
         console.error('Error fetching user data:', error);

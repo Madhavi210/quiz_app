@@ -162,10 +162,7 @@ submitAnswers = async (
       const results = await Result.find({ user: userId })
         .populate('exam', 'examName') 
         .populate('user', 'name') 
-        .exec();
-
-      console.log(results,"result");
-      
+        .exec();      
       return results;
     } catch (error) {
       console.error('Error fetching exam history:', error);

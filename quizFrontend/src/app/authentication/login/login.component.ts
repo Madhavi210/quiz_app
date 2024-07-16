@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  passwordFieldType: string = 'password';
 
   constructor(
     private fb: FormBuilder, 
@@ -43,4 +44,9 @@ export class LoginComponent implements OnInit {
       });
     }
   }
+
+  togglePasswordVisibility(): void {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+  }
+  
 }

@@ -22,9 +22,7 @@ export class LoginService {
         if (response) {          
           this.token = response.token;
           this.userId = response.id;
-          this.userRole = response.role;
-          // console.log(this.userId, response, "responsesss");
-          
+          this.userRole = response.role;          
           localStorage.setItem('token', this.token);
           localStorage.setItem('userId', this.userId);
           localStorage.setItem('role', this.userRole);
@@ -58,7 +56,7 @@ export class LoginService {
     localStorage.removeItem('userId');
     localStorage.removeItem('role');
     this.router.navigate(['/login']);
-    return of(undefined); // Return an observable
+    return of(undefined); 
   }
 }
 

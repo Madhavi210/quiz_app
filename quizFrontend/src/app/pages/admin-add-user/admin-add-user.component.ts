@@ -43,17 +43,18 @@ export class AdminAddUserComponent {
       this.userService.createUser(formData).subscribe(
         (response) => {
           Swal.fire('Success', 'User created successfully', 'success');
-          this.router.navigate(['/admin']); // Navigate to the admin user list or any other appropriate route
+          this.router.navigate(['/admin']); 
         },
         (error) => {
           if (error.status === 409) {
-            Swal.fire('Error', 'Username or email already exists. Please choose another one.', 'error');
+            console.error(error);
           } else {
-            Swal.fire('Error', 'Failed to create user. Please try again.', 'error');
+            console.error(error);
           }
         }
       );
     } else {
+      console.error("Invalid form data");
       Swal.fire('Error', 'Invalid form data', 'error');
     }
   }

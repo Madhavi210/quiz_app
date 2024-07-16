@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a *ngIf="userRole === 'admin'" class="nav-link text-light p-2 " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-      <i class="fa-solid fa-bars"></i> <!-- FontAwesome toggle icon for side bar-->
+      <i class="fa-solid fa-bars"></i> <!-- toggle icon for side bar-->
     </a>
     <a class="navbar-brand text-light">Quiz App</a>
     <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
             <li><span class="dropdown-item">Name: {{userName}}</span></li>
             <li><span class="dropdown-item">Role: {{userRole}}</span></li>
             <li>
-              <a class="dropdown-item" (click)="editProfile()">
+              <a class="dropdown-item" >
                   <button type="button" class="btn btn-secondary" (click)="open(modalContent)">
                     Edit Profile
                   </button>
@@ -48,12 +48,17 @@
   <div class="offcanvas-body">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link active" >
-          <i class="fa-solid fa-bookmark"></i> Users
+        <a class="nav-link active" routerLink="admin">
+          <i class="fa-solid fa-bookmark"></i> Dashboard
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">
+        <a class="nav-link" routerLink="admin/userList">
+          <i class="fa-solid fa-user"></i> Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" >
           <i class="fa-solid fa-box"></i> Products
         </a>
       </li>
@@ -94,7 +99,7 @@
         <input type="file" class="form-control" id="profilePic" (change)="onFileChange($event)">
         <img *ngIf="profilePicUrl" [src]="profilePicUrl" alt="Profile Picture" class="img-thumbnail mt-2" width="150">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary m-1">Submit</button>
     </form>
   </div>
 </ng-template>

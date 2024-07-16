@@ -29,12 +29,11 @@ export class UserService {
   }
 
   deleteUser(userId: string): Observable<void> {
-    // return this.http.delete<void>(`${this.apiUrl}/${userId}`);
     const url = `${this.apiUrl}/${userId}`;
     return this.http.delete<void>(url).pipe(
       catchError((error) => {
         console.error('Error deleting user:', error);
-        throw error; // Rethrow the error to propagate it to the caller
+        throw error; 
       })
     );
   }

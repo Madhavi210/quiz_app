@@ -7,16 +7,21 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ExamHistoryComponent } from './pages/exam-history/exam-history.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { AdminAddUserComponent } from './pages/admin-add-user/admin-add-user.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {path:'', redirectTo:"login", pathMatch:'full'},
   {path:"login", component: LoginComponent},
   {path:"register", component: RegisterComponent},
-  {path:"edit-user/:id", component: EditUserComponent},
+  { path: 'admin/addUser', component: EditUserComponent },
+  { path: 'admin/edit-user/:id', component: EditUserComponent },
+  {path : "admin/userList", component:UserDetailComponent},
   {path:"home", component: HomeComponent},
   {path:"admin", component: DashboardComponent},
-  {path:"admin/addUser", component: AdminAddUserComponent},
   {path:"examHistory", component: ExamHistoryComponent},
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({

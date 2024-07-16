@@ -20,6 +20,9 @@ import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { AdminAddUserComponent } from './pages/admin-add-user/admin-add-user.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './layout/footer/footer.component';
+import { ErrorHandlerInterceptor } from './core/interceptor/error-handler.interceptor';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     ExamHistoryComponent,
     UserDetailComponent,
     EditUserComponent,
-    AdminAddUserComponent
+    AdminAddUserComponent,
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     NgxPermissionsModule.forRoot()
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

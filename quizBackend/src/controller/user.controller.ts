@@ -12,6 +12,7 @@ import path from "path";
 import upload from "../utils/fileUpload";
 import bcrypt from "bcrypt";
 import fs from "fs";
+
 export default class UserController {
   public static async createUser(
     req: Request,
@@ -216,7 +217,6 @@ export default class UserController {
 
   private static async deleteProfilePicture(filepath: string): Promise<void> {
     const fullPath = path.join(__dirname, "..", "..", filepath);
-    console.log(fullPath, "fullpath");
 
     try {
       if (fs.existsSync(fullPath)) {

@@ -13,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent {
 
   registerForm!: FormGroup;
+  passwordFieldType: string = 'password';
+
   
   constructor(
     private fb: FormBuilder,
@@ -50,9 +52,9 @@ export class RegisterComponent {
         },
         (error) => {
           if (error.status === 409) {
-            Swal.fire('Error', 'Username or email already exists. Please choose another one.', 'error');
+            console.error(error);
           } else {
-            Swal.fire('Error', 'Registration failed. Please try again.', 'error');
+            console.error(error);
           }
         }
       );
@@ -68,6 +70,10 @@ export class RegisterComponent {
         profilePic: file
       });
     
+  }
+
+  togglePasswordVisibility(): void {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
 }

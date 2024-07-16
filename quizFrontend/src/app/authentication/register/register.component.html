@@ -1,18 +1,5 @@
 <div class="container-fluid p-0 m-0">
     <div class="row sec1 ">
-      <!-- First Part - Welcome Message and Social Icons -->
-      <!-- <div class="sec1 col-lg-6 bg-primary text-white d-flex flex-column justify-content-center align-items-center p-5">
-        <div class="text-center">
-          <h2 class="fw-bold p-3">Welcome to My App</h2>
-          <p class="p-3">Explore amazing features and more. <br> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut, voluptas!</p>
-          <div class="social-icons">
-            <i class="fab fa-facebook fa-2x"></i>
-            <i class="fab fa-twitter fa-2x p-2"></i>
-            <i class="fab fa-instagram fa-2x"></i>
-            <i class="fab fa-linkedin fa-2x p-2"></i>
-          </div>
-        </div>
-      </div> -->
   
       <!-- Second Part - Registration Form -->
       <div class="sec2 d-flex align-items-center justify-content-center">
@@ -52,7 +39,13 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text p-3"><i class="fas fa-lock"></i></span>
                 </div>
-                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" >
+                <!-- <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" > -->
+                <input [type]="passwordFieldType" class="form-control" id="password" formControlName="password" placeholder="Password">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-toggle-password" (click)="togglePasswordVisibility()">
+                    <i [ngClass]="passwordFieldType === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+                  </button>
+                </div>
               </div>
               <div *ngIf="registerForm.get('password')?.errors && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="text-danger">
                 <div *ngIf="registerForm.get('password')?.hasError('required')">Password is required.</div>
@@ -66,7 +59,6 @@
               <div *ngIf="registerForm.get('profilePic')?.errors && (registerForm.get('profilePic')?.touched || registerForm.get('profilePic')?.dirty)" class="text-danger mt-1">
                 <div *ngIf="registerForm.get('profilePic')?.hasError('required')">Profile picture is required.</div>
               </div>
-              <!-- You might want to add custom validation logic for file type and size -->
             </div>
   
             <!-- Submit and Reset Buttons -->

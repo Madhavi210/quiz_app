@@ -65,6 +65,7 @@ export class SidebarComponent implements OnInit{
     );
   } else {
     console.error('User ID is undefined or null');
+    Swal.fire("error", "'User ID is undefined or null" , "error");
   }
 }
 
@@ -75,7 +76,7 @@ loadUserData(userId: string): void {
       this.editForm.patchValue({
         name: user.name,
         email: user.email,
-        password: '', // Clear password field for security reasons
+        password: '', 
       });
       if (user.profilePic) {
         const filename = user.profilePic.split('\\').pop();
@@ -99,14 +100,11 @@ logout(): void {
     },
     error => {
       console.error(error);
-      Swal.fire("Error", "Logout Failed", "error"); 
     }
   );
 }
 
-editProfile(): void{
-    // this.router.navigate(["/edit-user", this.userId]);
-}
+
 
 open(content: any) {
   this.modalRef = this.modalService.open(content, { centered: true });
@@ -127,7 +125,6 @@ onSubmit() {
         (response) => {
           Swal.fire('Success', 'User updated successfully', 'success');
           this.modalRef?.close();
-          // Optionally, update local data or navigate to another page
           this.userName = this.editForm.get('name')?.value;
           const profilePicFile = this.editForm.get('profilePic')?.value;
           if (profilePicFile) {
@@ -138,11 +135,10 @@ onSubmit() {
         },
         (error) => {
           console.error('Error updating user:', error);
-          Swal.fire('Error', 'Failed to update user', 'error');
         }
       );
     }
-  } else {
+  } else {    
     Swal.fire('Error', 'Invalid form data', 'error');
   }
 }

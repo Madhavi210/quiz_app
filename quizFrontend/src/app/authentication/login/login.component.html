@@ -42,7 +42,13 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text p-3"><i class="fas fa-lock"></i></span>
                 </div>
-                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                <!-- <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password"> -->
+                <input [type]="passwordFieldType" class="form-control" id="password" formControlName="password" placeholder="Password">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-toggle-password" (click)="togglePasswordVisibility()">
+                    <i [ngClass]="passwordFieldType === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+                  </button>
+                </div>
               </div>
               <div *ngIf="loginForm.get('password')?.errors && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="text-danger">
                 <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</div>

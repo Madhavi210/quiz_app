@@ -24,16 +24,13 @@ export class HomeComponent implements OnInit{
     private fb: FormBuilder
   ){ }
 
-  ngOnInit(): void {
-    // this.userId = localStorage.getItem('userId'); 
-  }
+  ngOnInit(): void {}
 
   viewResults() {
     console.log('Viewing results...');
   }
 
   viewHistory() {
-    console.log('Viewing quiz history...');
     this.router.navigate(['/examHistory'])
   }
 
@@ -69,7 +66,6 @@ export class HomeComponent implements OnInit{
     this.examService.submitAnswers(this.userId , this.examId, answers).subscribe(
       (response) => {
         this.userId = localStorage.getItem('userId')
-        console.log(response, "responseeee");
         Swal.fire({
           title: "Exam submitted Successfully, Do You Want to give next Exam?",
           text: `Next Exam Will Be a little Difficult!`,
@@ -95,7 +91,6 @@ export class HomeComponent implements OnInit{
       },
       (error) => {
         console.error('Error submitting exam:', error);
-        Swal.fire('Error', error.message || 'Failed to submit answers.', 'error');
       }
     );
   }
@@ -105,13 +100,9 @@ export class HomeComponent implements OnInit{
     if (!this.userId) {
       console.error("User ID or Exam ID is missing");
       return;
-    }
-    console.log(this.userId, );
-    
+    }    
     this.examService.generateNextExam(this.userId).subscribe(
-      (response) => {
-        console.log(response);
-        
+      (response) => {        
         this.examPaper = response.nextExamQuestions;
         this.examId = response.examId;
         this.userId = response.userId;
