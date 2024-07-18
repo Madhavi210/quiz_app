@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit{
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      profilePic: [''],
+      profilePic: ['', Validators.required],
     });
   }
 
@@ -139,7 +139,9 @@ onSubmit() {
       );
     }
   } else {    
-    Swal.fire('Error', 'Invalid form data', 'error');
+      this.editForm.markAllAsTouched();
+      Swal.fire('Error', 'Invalid form data', 'error');
+      return;
   }
 }
 

@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
           console.error('login failed', error);
         }
       });
+    } else {
+      this.loginForm.markAllAsTouched();
+      return;
     }
   }
 

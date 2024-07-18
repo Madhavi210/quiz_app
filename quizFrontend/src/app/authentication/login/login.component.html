@@ -23,7 +23,7 @@
           <!-- Login Form -->
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <label class="mb-2 " for="email">Email address</label>
+              <label class="mb-2 " for="email">Email address <span class="text-danger">*</span></label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text p-3"><i class="fas fa-envelope"></i></span>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-              <label class="mb-2" for="password ">Password</label>
+              <label class="mb-2" for="password ">Password <span class="text-danger ">*</span></label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text p-3"><i class="fas fa-lock"></i></span>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="loginbtnsec form-group ">
-              <button type="submit" class="btn btn-primary m-1 btn-lg" [disabled]="!loginForm.valid">Login</button>
+              <button type="submit" class="btn btn-primary m-1 btn-lg" >Login</button>
               <button type="reset" class="btn btn-secondary m-1 btn-lg">Reset</button>
             </div>
           </form>

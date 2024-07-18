@@ -58,8 +58,10 @@ export class RegisterComponent {
           }
         }
       );
-    } else {
-      Swal.fire('Error', 'Invalid form data', 'error');
+    }
+    else {
+      this.registerForm.markAllAsTouched();
+      return;
     }
   }
 

@@ -32,7 +32,7 @@ export class EditUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       role: ['user', Validators.required],
-      profilePic: [''],
+      profilePic: ['', Validators.required],
     });
     this.route.paramMap.subscribe((params) => {
       this.userId = params.get('id');
@@ -109,7 +109,8 @@ export class EditUserComponent implements OnInit {
         );
       }
     } else {
-      Swal.fire('Error', 'Invalid form data', 'error');
+      this.editForm.markAllAsTouched();
+      return;
     }
   }
 
