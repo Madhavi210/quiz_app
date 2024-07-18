@@ -23,7 +23,10 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ErrorHandlerInterceptor } from './core/interceptor/error-handler.interceptor';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-
+import { QuestionListComponent } from './pages/question-list/question-list.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { EditQuestionComponent } from './pages/edit-question/edit-question.component';
+import { ActionCellRendererComponent } from './shared/action-cell-renderer/action-cell-renderer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     EditUserComponent,
     AdminAddUserComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    QuestionListComponent,
+    EditQuestionComponent,
+    ActionCellRendererComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPermissionsModule.forRoot()
+    NgxPermissionsModule.forRoot(),
+    AgGridModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

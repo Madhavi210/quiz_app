@@ -1,0 +1,33 @@
+
+  // Import AG Grid themes
+@import "~ag-grid-community/styles/ag-grid.css";
+@import "~ag-grid-community/styles/ag-theme-alpine.css";
+
+// Customize AG Grid theme
+.ag-theme-alpine {
+  --ag-background-color: #ffffff;
+  --ag-header-background-color: #f8f9fa;
+  --ag-odd-row-background-color: #f7f7f7;
+  --ag-even-row-background-color: #ffffff;
+  --ag-border-color: #dee2e6;
+  --ag-header-font-size: 1rem;
+  --ag-header-foreground-color: #495057;
+  --ag-font-size: 0.875rem;
+  --ag-foreground-color: #495057;
+  --ag-row-hover-background-color: #e9ecef;
+}
+
+.addbtn {
+    background-color: rgba(54, 162, 235, 0.8);
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.addbtn:hover {
+    background-color: rgba(6, 149, 245, 0.8);
+    color: white;  
+}

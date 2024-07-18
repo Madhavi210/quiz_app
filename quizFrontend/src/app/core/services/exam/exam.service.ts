@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ExamService {
 
-  private readonly apiUrl = 'http://localhost:3000/api/exam'; 
+  // private readonly apiUrl = 'http://localhost:3000/api/exam'; 
+  private readonly apiUrl = '/exam'; 
   
 
   constructor(private http: HttpClient) {}

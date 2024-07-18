@@ -12,7 +12,8 @@ export class LoginService {
   private userRole?: string | null = null; 
   private isAuthenticated: boolean = false;
   
-  private readonly apiUrl = 'http://localhost:3000/api/user';
+  // private readonly apiUrl = 'http://localhost:3000/api/user';
+  private readonly apiUrl = '/user';
 
   constructor(private http: HttpClient, private router: Router) { }
 

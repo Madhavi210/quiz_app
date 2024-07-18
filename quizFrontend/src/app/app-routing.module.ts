@@ -11,6 +11,8 @@ import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { roleGuard } from './core/guards/role.guard';
 import { authGuard } from './core/guards/auth.guard';
+import { QuestionListComponent } from './pages/question-list/question-list.component';
+import { EditQuestionComponent } from './pages/edit-question/edit-question.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -41,6 +43,24 @@ const routes: Routes = [
   {
     path: 'admin/userList',
     component: UserDetailComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { expectedRole: 'admin' },
+  },
+  {
+    path: 'admin/questionList',
+    component: QuestionListComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { expectedRole: 'admin' },
+  },
+  {
+    path: 'admin/addQuestion',
+    component: EditQuestionComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { expectedRole: 'admin' },
+  },
+  {
+    path: 'admin/edit-question/:id',
+    component: EditQuestionComponent,
     canActivate: [authGuard, roleGuard],
     data: { expectedRole: 'admin' },
   },
